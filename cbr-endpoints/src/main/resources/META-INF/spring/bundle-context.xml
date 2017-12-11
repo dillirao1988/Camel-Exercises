@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:ctx="http://www.springframework.org/schema/context"
+    xmlns:osgix="http://www.springframework.org/schema/osgi-compendium"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="         http://www.springframework.org/schema/beans     http://www.springframework.org/schema/beans/spring-beans.xsd         http://www.springframework.org/schema/context     http://www.springframework.org/schema/context/spring-context.xsd     http://camel.apache.org/schema/spring   http://camel.apache.org/schema/spring/camel-spring.xsd   http://www.springframework.org/schema/osgi-compendium         http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd">
+    <!-- properties placeholder -->
+    <osgix:cm-properties id="camel-cbr" persistent-id="camel_cbr">
+        <prop key="sourceDirectoryXmlUri">file:/camel-exercises/cbr/in/xml</prop>
+    </osgix:cm-properties>
+    <ctx:property-placeholder properties-ref="camel-cbr"/>
+    <camelContext id="camelContext-e3bbb73e-f7f5-474e-a252-c9d38361126a"
+        trace="true" xmlns="http://camel.apache.org/schema/spring">
+        <packageScan>
+            <package>com.fusesource.camel.exercises.cbr</package>
+        </packageScan>
+        <endpoint id="sourceDirectoryXml" uri="${sourceDirectoryXmlUri}"/>
+        <endpoint id="sourceDirectoryCsv" uri="file:/camel-exercises/cbr/in/csv"/>
+        <endpoint id="euroSinkUriXml" uri="file:/camel-exercises/cbr/out/xml/eur/?fileExist=Append&amp;fileName=euro-${date:now:yyyyMMdd}.xml"/>
+        <endpoint id="usdSinkUriXml" uri="file:/camel-exercises/cbr/out/xml/usd/?fileExist=Append&amp;fileName=usd-${date:now:yyyyMMdd}.xml"/>
+        <endpoint id="otherSinkUriXml" uri="file:/camel-exercises/cbr/out/xml/other/?fileExist=Append&amp;fileName=other-${date:now:yyyyMMdd}.xml"/>
+        <endpoint id="euroSinkUriCsv" uri="file:/camel-exercises/cbr/out/csv/eur/?fileExist=Append&amp;fileName=euro-${date:now:yyyyMMdd}.xml"/>
+        <endpoint id="usdSinkUriCsv" uri="file:/camel-exercises/cbr/out/csv/usd/?fileExist=Append&amp;fileName=usd-${date:now:yyyyMMdd}.xml"/>
+        <endpoint id="otherSinkUriCsv" uri="file:/camel-exercises/cbr/out/csv/other/?fileExist=Append&amp;fileName=other-${date:now:yyyyMMdd}.xml"/>
+    </camelContext>
+</beans>

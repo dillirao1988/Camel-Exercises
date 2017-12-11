@@ -1,0 +1,8 @@
+/target
+
+/.settings/org.sonar.ide.eclipse.core.prefs
+
+.classpath
+.project
+.tern-project
+.settings/
